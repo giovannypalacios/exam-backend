@@ -8,7 +8,8 @@ import java.util.stream.Collectors;
 
 public final class CustomerFactory {
 
-    private CustomerFactory() {}
+    private CustomerFactory() {
+    }
 
     public static Customer buildEntity(CustomerDTO dto) {
         Customer customer = new Customer();
