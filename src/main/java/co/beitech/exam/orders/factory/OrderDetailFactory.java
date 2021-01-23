@@ -2,6 +2,8 @@ package co.beitech.exam.orders.factory;
 
 import co.beitech.exam.orders.model.OrderDetail;
 import co.beitech.exam.orders.rest.dto.OrderDetailDTO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,6 +40,11 @@ public final class OrderDetailFactory {
                 .stream()
                 .map(OrderDetailFactory::buildDTO)
                 .collect(Collectors.toList());
+    }
+
+    public static Page<OrderDetailDTO> buildPagedDTOs(Page<OrderDetail> orderDetailPage) {
+        List<OrderDetail> ordersList = orderDetailPage.getContent();
+        return new PageImpl<>(buildDTOs(ordersList));
     }
 }
 

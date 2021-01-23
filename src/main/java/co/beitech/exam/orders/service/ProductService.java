@@ -14,9 +14,17 @@ public class ProductService {
 
     @Autowired
     ProductRepository productRepository;
+    @Autowired
+    CustomerService customerService;
 
     public List<ProductDTO> list() {
         List<Product> products = productRepository.findAll();
         return ProductFactory.buildDTOs(products);
     }
+
+    public List<ProductDTO> customerProducts(Long customerId) {
+        List<Product> availableProducts = customerService.getCustomer(customerId).getAvailableProducts();
+        return ProductFactory.buildDTOs(availableProducts);
+    }
+
 }
