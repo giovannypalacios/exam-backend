@@ -19,4 +19,10 @@ public class CustomerService {
         List<Customer> customers = customerRepository.findAll();
         return CustomerFactory.buildDTOs(customers);
     }
+
+    public Customer list(Long customerId) throws Exception {
+        return customerRepository
+                .findById(customerId)
+                .orElseThrow(() -> new Exception("Customer not found. ID:" + customerId));
+    }
 }

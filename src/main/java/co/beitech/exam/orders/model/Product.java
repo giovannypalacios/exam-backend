@@ -6,6 +6,8 @@ import lombok.Setter;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import java.util.List;
 
 @Entity
 @Getter
@@ -19,4 +21,7 @@ public class Product {
     @Column(name = "product_description")
     private String description;
     private Double price;
+
+    @ManyToMany(mappedBy = "availableProducts")
+    private List<Customer> customers;
 }
