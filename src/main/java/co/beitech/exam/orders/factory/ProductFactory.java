@@ -12,11 +12,14 @@ public final class ProductFactory {
     }
 
     public static Product buildEntity(ProductDTO dto) {
-        Product product = new Product();
-        product.setId(dto.getId());
-        product.setName(dto.getName());
-        product.setDescription(dto.getDescription());
-        product.setPrice(dto.getPrice());
+        Product product = null;
+        if (dto != null) {
+            product = new Product();
+            product.setId(dto.getId());
+            product.setName(dto.getName());
+            product.setDescription(dto.getDescription());
+            product.setPrice(dto.getPrice());
+        }
         return product;
     }
 
