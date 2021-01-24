@@ -52,7 +52,13 @@ public class CustomerResource {
             @PathVariable("customerId") Long customerId,
             @RequestParam(name = "page", defaultValue = "0") int page,
             @RequestParam(name = "size", defaultValue = "10") int size) {
-        return ResponseEntity
-                .ok(orderService.customerOrders(customerId, page, size));
+        return ResponseEntity.ok(orderService.customerOrders(customerId, page, size));
+    }
+
+    @PostMapping("/{customerId}/orders")
+    public ResponseEntity<OrderDTO> addOrder(
+            @PathVariable("customerId") Long customerId,
+            @RequestBody OrderDTO orderDTO) {
+        return ResponseEntity.ok(orderService.addOrder(customerId, orderDTO));
     }
 }

@@ -12,10 +12,13 @@ public final class CustomerFactory {
     }
 
     public static Customer buildEntity(CustomerDTO dto) {
-        Customer customer = new Customer();
-        customer.setId(dto.getId());
-        customer.setName(dto.getName());
-        customer.setEmail(dto.getEmail());
+        Customer customer = null;
+        if (dto != null) {
+            customer = new Customer();
+            customer.setId(dto.getId());
+            customer.setName(dto.getName());
+            customer.setEmail(dto.getEmail());
+        }
         return customer;
     }
 

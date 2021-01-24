@@ -12,19 +12,20 @@ public final class OrderFactory {
     }
 
     public static Order buildEntity(OrderDTO dto) {
-        Order order = new Order();
-        order.setId(dto.getId());
-        order.setCustomer(CustomerFactory.buildEntity(dto.getCustomer()));
-        order.setCreationDate(dto.getCreationDate());
-        order.setDeliveryAddress(dto.getDeliveryAddress());
-        order.setTotal(dto.getTotal());
+        Order order = null;
+        if (dto != null) {
+            order = new Order();
+            order.setId(dto.getId());
+            order.setCreationDate(dto.getCreationDate());
+            order.setDeliveryAddress(dto.getDeliveryAddress());
+            order.setTotal(dto.getTotal());
+        }
         return order;
     }
 
     public static OrderDTO buildDTO(Order order) {
         OrderDTO dto = new OrderDTO();
         dto.setId(order.getId());
-        dto.setCustomer(CustomerFactory.buildDTO(order.getCustomer()));
         dto.setCreationDate(order.getCreationDate());
         dto.setDeliveryAddress(order.getDeliveryAddress());
         dto.setTotal(order.getTotal());
