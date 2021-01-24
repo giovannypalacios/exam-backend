@@ -29,7 +29,7 @@ public class OrderResource {
         return ResponseEntity.ok(orderService.list(page, size));
     }
 
-    @GetMapping("/{orderId}/order-details")
+    @GetMapping("/{orderId}/details")
     @ResponseBody
     public ResponseEntity<List<OrderDetailDTO>> orderDetail(
             @PathVariable("orderId") Long orderId) {

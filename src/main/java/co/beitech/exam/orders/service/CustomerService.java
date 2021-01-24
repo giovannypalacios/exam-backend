@@ -5,10 +5,7 @@ import co.beitech.exam.orders.model.Customer;
 import co.beitech.exam.orders.repository.CustomerRepository;
 import co.beitech.exam.orders.rest.dto.CustomerDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,7 +15,8 @@ public class CustomerService {
     CustomerRepository customerRepository;
 
     public Page<CustomerDTO> list(int page, int size) {
-        Pageable pageable = PageRequest.of(page, size);
+        Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.ASC, "name"));
+
         Page<Customer> customers = customerRepository.findAll(pageable);
         return new PageImpl<>(CustomerFactory.buildDTOs(customers.getContent()), pageable, customers.getTotalElements());
     }

@@ -8,9 +8,11 @@ import co.beitech.exam.orders.service.OrderService;
 import co.beitech.exam.orders.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -51,8 +53,10 @@ public class CustomerResource {
     public ResponseEntity<Page<OrderDTO>> orders(
             @PathVariable("customerId") Long customerId,
             @RequestParam(name = "page", defaultValue = "0") int page,
-            @RequestParam(name = "size", defaultValue = "10") int size) {
-        return ResponseEntity.ok(orderService.customerOrders(customerId, page, size));
+            @RequestParam(name = "size", defaultValue = "10") int size,
+            @RequestParam(name = "startDate", required = false, defaultValue = "2020-01-01") @DateTimeFormat(pattern = "yyyy-MM-dd") Date start,
+            @RequestParam(name = "endDate", required = false, defaultValue = "2021-01-01") @DateTimeFormat(pattern = "yyyy-MM-dd") Date end) {
+        return ResponseEntity.ok(orderService.customerOrders(customerId, page, size, start, end));
     }
 
     @PostMapping("/{customerId}/orders")

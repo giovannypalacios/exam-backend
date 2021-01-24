@@ -19,6 +19,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,9 +43,13 @@ public class OrderService {
         return orderRepository.findById(orderId).orElseThrow();
     }
 
-    public Page<OrderDTO> customerOrders(Long customerId, int page, int size) {
+    public Page<OrderDTO> customerOrders(Long customerId, int page, int size, Date start, Date end) {
         Pageable pageable = PageRequest.of(page, size);
-        Page<Order> pagedOrders = orderRepository.findByCustomerId(customerId, pageable);
+        Page<Order> pagedOrders = orderRepository.findByCustomerIdAndCreationDateBetweenOrderByCreationDateDesc(
+                customerId,
+                pageable,
+                start,
+                end);
         return new PageImpl<>(OrderFactory.buildDTOs(pagedOrders.getContent()), pageable, pagedOrders.getTotalElements());
     }
 

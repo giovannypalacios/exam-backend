@@ -29,6 +29,7 @@ public final class OrderFactory {
         dto.setCreationDate(order.getCreationDate());
         dto.setDeliveryAddress(order.getDeliveryAddress());
         dto.setTotal(order.getTotal());
+        dto.setOrderDetailList(order.getOrderDetails().stream().map(OrderDetailFactory::buildDTO).collect(Collectors.toList()));
         return dto;
     }
 
