@@ -14,9 +14,16 @@ public class OrderDetailService {
 
     @Autowired
     OrderDetailRepository orderDetailRepository;
+    @Autowired
+    OrderService orderService;
 
     public List<OrderDetailDTO> list() {
         List<OrderDetail> orderDetails = orderDetailRepository.findAll();
+        return OrderDetailFactory.buildDTOs(orderDetails);
+    }
+
+    public List<OrderDetailDTO> orderDetails(Long orderId) {
+        List<OrderDetail> orderDetails = orderService.getOrder(orderId).getOrderDetails();
         return OrderDetailFactory.buildDTOs(orderDetails);
     }
 }

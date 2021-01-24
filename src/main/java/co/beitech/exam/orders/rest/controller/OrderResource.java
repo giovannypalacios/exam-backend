@@ -2,6 +2,7 @@ package co.beitech.exam.orders.rest.controller;
 
 import co.beitech.exam.orders.rest.dto.OrderDTO;
 import co.beitech.exam.orders.rest.dto.OrderDetailDTO;
+import co.beitech.exam.orders.service.OrderDetailService;
 import co.beitech.exam.orders.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,6 +17,9 @@ public class OrderResource {
 
     @Autowired
     OrderService orderService;
+    @Autowired
+    OrderDetailService orderDetailService;
+
 
     @GetMapping
     @ResponseBody
@@ -29,7 +33,7 @@ public class OrderResource {
     @ResponseBody
     public ResponseEntity<List<OrderDetailDTO>> orderDetail(
             @PathVariable("orderId") Long orderId) {
-        return ResponseEntity.ok(orderService.orderDetails(orderId));
+        return ResponseEntity.ok(orderDetailService.orderDetails(orderId));
     }
 
 }

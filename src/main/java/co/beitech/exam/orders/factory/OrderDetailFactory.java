@@ -16,7 +16,6 @@ public final class OrderDetailFactory {
     public static OrderDetail buildEntity(OrderDetailDTO dto) {
         OrderDetail orderDetail = new OrderDetail();
         orderDetail.setId(dto.getId());
-        orderDetail.setOrder(OrderFactory.buildEntity(dto.getOrder()));
         orderDetail.setProduct(ProductFactory.buildEntity(dto.getProduct()));
         orderDetail.setProductDescription(dto.getProductDescription());
         orderDetail.setPrice(dto.getPrice());
@@ -27,7 +26,6 @@ public final class OrderDetailFactory {
     public static OrderDetailDTO buildDTO(OrderDetail orderDetail) {
         OrderDetailDTO dto = new OrderDetailDTO();
         dto.setId(orderDetail.getId());
-        dto.setOrder(OrderFactory.buildDTO(orderDetail.getOrder()));
         dto.setProduct(ProductFactory.buildDTO(orderDetail.getProduct()));
         dto.setProductDescription(orderDetail.getProductDescription());
         dto.setPrice(orderDetail.getPrice());
