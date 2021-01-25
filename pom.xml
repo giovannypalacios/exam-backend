@@ -12,7 +12,7 @@
 	<artifactId>orders</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>orders</name>
-	<description>Aplicación Web para prueba de ingreso como desarrollador Java a Beitech</description>
+	<description>Web application for the Beitech's java developer test</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>

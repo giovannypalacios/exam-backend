@@ -80,6 +80,7 @@ public class OrderService {
         orderDetailsList.forEach(orderDetail -> orderDetail.setOrder(newOrder));
 
         orderDetailRepository.saveAll(orderDetailsList);
+        newOrder.setOrderDetails(orderDetailRepository.findByOrderId(newOrder.getId()));
 
         return OrderFactory.buildDTO(newOrder);
     }
